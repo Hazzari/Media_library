@@ -7,6 +7,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 env = Env()
 env.read_env()
 
+GOOGLE_CLIENT_ID = env.str('GOOGLE_CLIENT_ID')
 SECRET_KEY = env.str('SECRET_KEY')
 PROJECT_NAME: str = env.str('PROJECT_NAME')
 ALLOWED_HOSTS = env.list('ALLOWED_HOSTS')
@@ -104,3 +105,6 @@ STATIC_URL = '/static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
+
+ALGORITHM = 'HS256'
+ACCESS_TOKEN_EXPIRE_MINUTES = 60 * 24
