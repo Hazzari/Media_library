@@ -9,7 +9,8 @@ from src.oauth.models import AuthUser
 
 
 class AuthBackend(authentication.BaseAuthentication):
-    """ Кастомный клас авторизации."""
+    """ Кастомный клас авторизации.
+    """
     authentication_header_prefix = 'Token'
 
     def authenticate(self, request, token=None, **kwargs) -> Optional[tuple]:

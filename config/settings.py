@@ -7,11 +7,16 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 env = Env()
 env.read_env()
 
-GOOGLE_CLIENT_ID = env.str('GOOGLE_CLIENT_ID')
+# Django environment
 SECRET_KEY = env.str('SECRET_KEY')
 PROJECT_NAME: str = env.str('PROJECT_NAME')
 ALLOWED_HOSTS = env.list('ALLOWED_HOSTS')
 DEBUG = env.bool("DEBUG")
+
+# Google and Spotify auth
+GOOGLE_CLIENT_ID = env.str('GOOGLE_CLIENT_ID')
+SPOTIFY_CLIENT_ID = env.str('SPOTIFY_CLIENT_ID')
+SPOTIFY_CLIENT_SECRET = env.str('SPOTIFY_CLIENT_SECRET')
 
 DATABASES = {
     'default': {

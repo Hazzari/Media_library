@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Spotify Log In</title>
+</head>
+<body>
+
+<div id="login">
+  <h1>Вход через spotify</h1>
+  <button id="login">Login</button>
+</div>
+<script>
+    let uri = 'https://accounts.spotify.com/authorize'
+    uri += '?client_id={{ spotify_key_id }}'
+    uri += '&response_type=code'
+    uri += '&redirect_uri={{ spotify_redirect_uri }}'
+    uri += '&scope={{ spotify_scope }}'
+    uri += '&state={{ spotify_state }}'
+    const button = document.querySelector("#login");
+    button.addEventListener("click", function () {
+        document.location.href = uri
+    });
+</script>
+</body>
+</html>
