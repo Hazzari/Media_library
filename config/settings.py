@@ -11,7 +11,7 @@ env.read_env()
 SECRET_KEY = env.str('SECRET_KEY')
 PROJECT_NAME: str = env.str('PROJECT_NAME')
 ALLOWED_HOSTS = env.list('ALLOWED_HOSTS')
-DEBUG = env.bool("DEBUG")
+DEBUG = env.bool("DEBUG", False)
 
 # Google and Spotify auth
 GOOGLE_CLIENT_ID = env.str('GOOGLE_CLIENT_ID')
@@ -70,13 +70,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'config.wsgi.application'
 
-# Database
-# https://docs.djangoproject.com/en/3.2/ref/settings/#databases
-
-
-# Password validation
-# https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
-
 AUTH_PASSWORD_VALIDATORS = [
     {
         'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
@@ -95,7 +88,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/3.2/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'ru'
 
 TIME_ZONE = 'UTC'
 
@@ -106,6 +99,12 @@ USE_L10N = True
 USE_TZ = True
 
 STATIC_URL = '/static/'
+
+if DEBUG:
+    STATIC_DIR = BASE_DIR / 'static'
+    STATICFILES_DIRS = [STATIC_DIR, ]
+else:
+    STATIC_ROOT = BASE_DIR / 'static'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 MEDIA_URL = '/media/'

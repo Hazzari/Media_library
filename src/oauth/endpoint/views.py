@@ -1,3 +1,4 @@
+from django.shortcuts import render
 from rest_framework import parsers, permissions, viewsets
 
 from .. import serializers
@@ -19,3 +20,8 @@ class UserViewSet(viewsets.ModelViewSet):
     def get_object(self):
         # Ссылаемся на самого пользователя
         return self.get_queryset()
+
+
+def link_page(request):
+    """ Страница ссылок проекта"""
+    return render(request, 'index.html')
