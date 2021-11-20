@@ -36,9 +36,9 @@ class Album(models.Model):
     """
     user = models.ForeignKey(AuthUser, on_delete=models.CASCADE,
                              related_name='albums')
-    name = models.CharField(max_length=50)
+    name = models.CharField(max_length=50, unique=True, )
     description = models.TextField(max_length=1000)
-    private = models.BooleanField(default=False)
+    private = models.BooleanField(default=False,)
     cover = models.ImageField(
         upload_to=get_path_upload_cover_album,
         blank=True,

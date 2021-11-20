@@ -1,3 +1,5 @@
+import os.path
+
 from django.core.exceptions import ValidationError
 
 
@@ -20,26 +22,33 @@ def get_path_upload_cover_album(instance, file) -> str:
     """Построение пути к файлу обложки альбома,
        format: (media)/album/user_id/image.jpg
     """
-    print(instance)
-    return f'album/user_{instance.id}/{file}'
+    return f'album/user_{instance.user.id}/{file}'
 
 
 def get_path_upload_cover_playlist(instance, file) -> str:
     """Построение пути к файлу обложки альбома,
        format: (media)/playlist/user_id/cover.jpg
     """
-    return f'playlist/user_{instance.id}/{file}'
+    return f'playlist/user_{instance.user.id}/{file}'
 
 
 def get_path_upload_track(instance, file) -> str:
     """Построение пути к файлу обложки альбома,
        format: (media)/track/user_id/track.[mp3|wav]
     """
-    return f'track/user_{instance.id}/{file}'
+    return f'track/user_{instance.user.id}/{file}'
 
 
+# TODO: Доработать под все функции
 def get_path_upload_file(instance, file):
     f"""Построение пути к файлу
     format: (media)/{instance.__class__.__name__.lower()}/user_id/{file}
     """
-    return f'{instance.__class__.__name__.lower()}/user_{instance.id}/{file}'
+    return f'{instance.__class__.__name__.lower()}/user_{instance.user.id}/{file}'
+
+
+def delete_old_file(path_file):
+    """ Удаление старого файла
+    """
+    if os.path.exists(path_file):
+        os.remove(path_file)
